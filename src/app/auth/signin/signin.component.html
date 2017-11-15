@@ -1,0 +1,45 @@
+<div class="login-background" fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.xs="start start" fxFlexFill>
+  <div fxFlex.xs="100%" fxFlex="500px">
+    <mat-card>
+      <mat-list>
+        <mat-card-title layout="row" layout-align="start center">
+          <mat-icon class="mat-icon-logo">trending_up</mat-icon>
+          <span class="md-title">CryptoInvestor - Sign In</span>
+        </mat-card-title>
+        <mat-card-subtitle>Sign In with Your Credentials</mat-card-subtitle>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-card-content class="push-bottom-none">
+        <form #loginForm="ngForm" (keyup.enter)="onKeyEnter()">
+          <div layout="row">
+            <mat-form-field flex>
+              <input matInput #emailElement #emailControl="ngModel" placeholder="Email" type="text" maxlength="100" name="email" ngModel required email>
+              <mat-hint align="start">
+                <span [hidden]="!emailControl.errors?.required || emailControl.pristine" class="tc-red-600">Required</span>
+              </mat-hint>
+              <mat-hint align="end">{{emailElement.value.length}} / 100</mat-hint>
+            </mat-form-field>
+          </div>
+          <div layout="row" class="push-top-sm">
+            <mat-form-field flex>
+              <input matInput #passElement #passControl="ngModel" placeholder="Password" type="password" name="password" ngModel required>
+              <mat-hint align="start">
+                <span [hidden]="!passControl.errors?.required || passControl.pristine" class="tc-red-600">Required</span>
+              </mat-hint>
+              <mat-hint align="end">Something hard to guess</mat-hint>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <div layout="row">
+          <button flex mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="login()" class="text-upper">Sign In</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <div class="bottom-links">
+      <span>Don't Have an Account? <a routerLink="/signup">Sign Up</a></span>
+    </div>
+  </div>
+</div>

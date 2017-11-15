@@ -1,0 +1,25 @@
+@import '../../../../../../assets/styles/theme.scss';
+
+.title {
+  padding: 20px;
+  background-color: mat-color($primary);
+  color: white;
+}
+
+.dialog-content {
+  padding: 20px;
+  min-width: 250px;
+  max-width: 450px;
+}
+
+.mat-dialog-actions:last-child {
+  margin-bottom: -20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.coin-info {
+  margin-bottom: 10px;
+}

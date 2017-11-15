@@ -1,0 +1,16 @@
+<mat-card *tdLoading="'chartLoading'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'primary'">
+  <mat-card-content>
+    <div id="chartDiv" class="chart"></div>
+    <div class="period-buttons" align="end">
+      <button (click)="changePerdiod('1h')" [ngClass]="{'mat-primary': activePeriod === '1h'}" mat-raised-button class="btn-small">1H</button>
+      <button (click)="changePerdiod('1d')" [ngClass]="{'mat-primary': activePeriod === '1d'}" mat-raised-button class="btn-small">1D</button>
+      <button (click)="changePerdiod('1w')" [ngClass]="{'mat-primary': activePeriod === '1w'}" mat-raised-button class="btn-small">1W</button>
+      <button (click)="changePerdiod('1m')" [ngClass]="{'mat-primary': activePeriod === '1m'}" mat-raised-button class="btn-small">1M</button>
+      <button (click)="changePerdiod('3m')" [ngClass]="{'mat-primary': activePeriod === '3m'}" mat-raised-button class="btn-small">3M</button>
+      <button (click)="changePerdiod('6m')" [ngClass]="{'mat-primary': activePeriod === '6m'}" mat-raised-button class="btn-small">6M</button>
+      <button (click)="changePerdiod('1y')" [ngClass]="{'mat-primary': activePeriod === '1y'}" mat-raised-button class="btn-small">1Y</button>
+      <button (click)="changePerdiod('3y')" [ngClass]="{'mat-primary': activePeriod === '3y'}" mat-raised-button class="btn-small">3Y</button>
+      <button (click)="changePerdiod('max')" [ngClass]="{'mat-primary': activePeriod === 'max'}" mat-raised-button class="btn-small">MAX</button>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,42 @@
+<td-layout-nav>
+  <div td-toolbar-content layout="row" layout-align="start center" flex>
+    <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" matTooltip="Main menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-icon>trending_up</mat-icon>
+    <span class="logo-text">CryptoInvestor</span>
+    <span flex></span>
+    <a href="https://github.com/maciejjaskiewicz/cryptoinvestor-spa" target="_blank" mat-button matTooltip="See source code">GitHub</a>
+  </div>
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav opened="true" mode="{{navMode}}" style="width:257px;border-right:1px solid #ccc">
+      <div flex class="mat-content bgc-grey-50">
+        <div class="user-info">
+          <div class="user-email">{{ userEmail }}</div>
+          <div class="buttons">
+            <button mat-raised-button routerLink="/app/account" color="primary"><mat-icon class="b-icon">settings</mat-icon>Settings</button>
+            <button mat-raised-button (click)="logout()" color="warn"><mat-icon class="b-icon">power_settings_new</mat-icon>Logout</button>
+          </div>
+        </div>
+        <mat-nav-list *tdLoading="'navListLoading'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'primary'">
+          <mat-divider></mat-divider>
+          <a routerLink="/app/coins" routerLinkActive="active" mat-list-item><mat-icon>list</mat-icon>Coin list</a>
+          <a routerLink="/app/favourites" routerLinkActive="active" mat-list-item><mat-icon>star rate</mat-icon>Favourites</a>
+          <a mat-list-item (click)="onCreateNewPortfolio()"><mat-icon>add</mat-icon>Create Portfolio</a>
+          <mat-divider></mat-divider>
+          <div class="portfolios-list">
+            <a *ngFor="let portfolio of portfolios" routerLink="/app/portfolio/{{portfolio?.nameId}}" mat-list-item>
+              <mat-icon>description</mat-icon>{{ portfolio?.name }}
+            </a>
+          </div>
+          <mat-divider></mat-divider>
+          <a routerLink="/app/account" routerLinkActive="active" mat-list-item><mat-icon>settings</mat-icon>User Settings</a>
+          <a routerLink="/app/about" routerLinkActive="active" mat-list-item><mat-icon>help</mat-icon>About</a>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+</td-layout-nav>

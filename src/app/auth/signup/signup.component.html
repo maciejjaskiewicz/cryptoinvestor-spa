@@ -1,0 +1,70 @@
+<div class="register-background" fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.xs="start start" fxFlexFill>
+  <div fxFlex.xs="100%" fxFlex="500px">
+    <mat-card>
+      <mat-list>
+        <mat-card-title layout="row" layout-align="start center">
+          <mat-icon class="mat-icon-logo">trending_up</mat-icon>
+          <span class="mat-title">CryptoInvestor - Sign Up</span>
+        </mat-card-title>
+        <mat-card-subtitle>Join to CryptoInvestor</mat-card-subtitle>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-card-content class="push-bottom-none">
+        <form [formGroup]="signupForm" (keyup.enter)="onKeyEnter()">
+          <div layout="row">
+            <mat-form-field flex>
+              <input matInput #email name="email" placeholder="Email" type="text" formControlName="email">
+              <mat-hint align="start">
+                <span *ngIf="signupForm.get('email').errors?.required && signupForm.get('email').touched" class="tc-red-600">Required</span>
+                <span *ngIf="signupForm.get('email').errors?.email && signupForm.get('email').value" class="tc-red-600">Invalid email</span>
+                <span *ngIf="signupForm.get('email').errors?.emailInUse && !signupForm.get('email').errors?.email" class="tc-red-600">Email in use</span>
+              </mat-hint>
+              <mat-hint align="end">{{ email.value.length }} / 100</mat-hint>
+            </mat-form-field>
+          </div>
+          <div layout="row" class="push-top-sm">
+            <mat-form-field flex>
+              <input matInput #username name="username" placeholder="Username" type="text" formControlName="username">
+              <mat-hint align="start">
+                <span *ngIf="signupForm.get('username').errors?.required && signupForm.get('username').touched" class="tc-red-600">Required</span>
+                <span *ngIf="signupForm.get('username').errors?.minlength" class="tc-red-600">Username is too short</span>
+              </mat-hint>
+              <mat-hint align="end">{{username.value.length}} / 100</mat-hint>
+            </mat-form-field>
+          </div>
+            <div formGroupName="passwords">
+            <div layout="row" class="push-top-sm">
+              <mat-form-field flex>
+                <input matInput name="password" placeholder="Password" type="password" formControlName="password">
+                <mat-hint align="start">
+                  <span *ngIf="signupForm.get('passwords.password').errors?.required && signupForm.get('passwords.password').touched" class="tc-red-600">Required</span>
+                  <span *ngIf="signupForm.get('passwords.password').errors?.minlength" class="tc-red-600">Password is too short</span>
+                </mat-hint>
+                <mat-hint align="end">Something hard to guess</mat-hint>
+              </mat-form-field>
+            </div>
+            <div layout="row" class="push-top-sm">
+              <mat-form-field flex>
+                <input matInput name="cpassword" placeholder="Confirm password" type="password" formControlName="cpassword">
+                <mat-hint align="start">
+                  <span *ngIf="signupForm.get('passwords.cpassword').errors?.required && signupForm.get('passwords.cpassword').touched" class="tc-red-600">Required</span>
+                  <span *ngIf="signupForm.get('passwords').errors?.passwordsEquality === false && signupForm.get('passwords.cpassword').value" class="tc-red-600">Password are not equail</span>
+                </mat-hint>
+                <mat-hint align="end">Something hard to guess</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <div layout="row">
+          <button flex mat-raised-button color="accent" [disabled]="!signupForm.valid" (click)="submit()" class="text-upper">Sign Up</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <div class="bottom-links">
+      <span>Already registered? <a routerLink="/signin">Sign In</a></span>
+    </div>
+  </div>
+</div>

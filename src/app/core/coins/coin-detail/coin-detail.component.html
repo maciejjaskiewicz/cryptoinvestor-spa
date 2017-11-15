@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <span>Coin detail</span>
+  <span flex></span>
+  <button (click)="addToFavourites()" mat-button align="end">Add to favourites</button>
+</mat-toolbar>
+<div fxLayout="row" fxLayout.lt-lg="column">
+  <div fxFlex>
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <mat-card fxFlex class="coin-info">
+        <mat-card-title-group>
+          <img mat-card-md-image src="http://files.jaskiewicz.tech/cryptoinvestor/coins/128x128/{{ coinSymbol }}.png">
+          <div align="end">
+            <mat-card-title class="coin-title">{{ coinName }} ({{ coinSymbol | uppercase }})</mat-card-title>
+            <mat-card-subtitle class="coin-price">
+              <strong [ngClass]="{'change-up': coinDetails?.CHANGEPCT24HOUR > 0, 'change-down': coinDetails?.CHANGEPCT24HOUR < 0}">{{ coinDetails?.PRICE }}</strong>
+            </mat-card-subtitle>
+          </div>
+        </mat-card-title-group>
+      </mat-card>
+      <mat-card fxFlex>
+        <mat-card-title>Market cap</mat-card-title>
+        <mat-card-content class="coin-details-content">{{ coinDetails?.MKTCAP }}</mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <mat-card fxFlex>
+        <mat-card-title>Change 24h</mat-card-title>
+        <mat-card-content [ngClass]="{'change-up': coinDetails?.CHANGEPCT24HOUR > 0, 'change-down': coinDetails?.CHANGEPCT24HOUR < 0}" class="coin-details-content">{{ coinDetails?.CHANGEPCT24HOUR }}%</mat-card-content>
+      </mat-card>
+      <mat-card fxFlex>
+        <mat-card-title>Volume 24h</mat-card-title>
+        <mat-card-content class="coin-details-content">{{ coinDetails?.TOTALVOLUME24HTO }}</mat-card-content>
+      </mat-card>
+      <mat-card fxFlex>
+        <mat-card-title>Supply</mat-card-title>
+        <mat-card-content class="coin-details-content">{{ coinDetails?.SUPPLY }}</mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<app-coin-chart [coinSymbol]="coinSymbol"></app-coin-chart>

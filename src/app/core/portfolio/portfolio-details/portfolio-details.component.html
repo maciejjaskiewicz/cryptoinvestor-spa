@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <span>{{ portfolioData?.name }}</span>
+  <span flex></span>
+  <button (click)="onAddTransaction()" mat-button align="end">Add coin</button>
+  <button *ngIf="portfolioNameId != 'default'" mat-icon-button matTooltip="Portfolio options" [matMenuTriggerFor]="opptionsMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #opptionsMenu="matMenu">
+    <button (click)="updatePortfolio()" mat-menu-item>Change name</button>
+    <button (click)="deletePortfolio()" mat-menu-item>Delete portfolio</button>
+  </mat-menu>
+</mat-toolbar>
+<div class="card-content">
+  <h5>Summary</h5>
+  <mat-card>
+    <mat-card-content class="info-list">
+      <div layout="row">
+        <div flex="40">Profit / Loss:</div>
+        <div flex="60">
+          <strong [ngClass]="{'change-up': profitLoss > 0, 'change-down': profitLoss < 0}">$ {{ profitLoss | number }}</strong>
+        </div>
+      </div>
+      <div layout="row">
+        <div flex="40">Holdings:</div>
+        <div flex="60"><strong>$ {{ holdings | number }}</strong></div>
+      </div>
+      <div layout="row">
+        <div flex="40">Realized Profit / Loss:</div>
+        <div flex="60">
+          <strong [ngClass]="{'change-up': realized > 0, 'change-down': realized < 0}">$ {{ realized | number }}</strong>
+        </div>
+      </div>
+      <div layout="row">
+        <div flex="40">Total Profit / Loss:</div>
+        <div flex="60">
+          <strong [ngClass]="{'change-up': total > 0, 'change-down': total < 0}">$ {{ total | number }}</strong>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <h5>Coins</h5>
+  <mat-card class="table-card">
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Current">
+          <app-transactions-table [transactionsData]="currentTransactions"></app-transactions-table>
+        </mat-tab>
+        <mat-tab label="Sold">
+            <app-transactions-table [transactionsData]="soldTransactions"></app-transactions-table>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,28 @@
+<div class="title">New transaction</div>
+<div class="dialog-content">
+  <form [formGroup]="newTransactionForm">
+    <mat-form-field class="full-width">
+      <input type="text" name="coin" placeholder="Coin" matInput [formControl]="coinControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.symbol">
+          {{ option.symbol | uppercase }} - {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input formControlName="buyPrice" name="buyPrice" matInput placeholder="Buy price">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input formControlName="amount" name="amount" matInput placeholder="Amount">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input formControlName="date" name="date" matInput [matDatepicker]="picker" placeholder="Purchase date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button [disabled]="newTransactionForm.invalid" (click)="addToPortfolio()" mat-raised-button color="primary">Add to portfolio</button>
+  </mat-dialog-actions>
+</div>

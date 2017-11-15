@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cryptoinvestor</title>
+  <title>CryptoInvestor</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loading-overlay">
+      <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <span>Favourites</span>
+</mat-toolbar>
+
+<div fxLayout="wrap" class="wrap-container">
+  <mat-card fxFlex fxFlex.xs="100%" *ngFor="let coin of favouritesData?.coins">
+    <mat-card-title-group>
+      <img mat-card-md-image routerLink="/app/coins/{{ coin?.symbol }}" src="http://files.jaskiewicz.tech/cryptoinvestor/coins/128x128/{{ coin?.symbol }}.png">
+      <div align="end">
+        <mat-card-title class="coin-title">{{ coin?.name }} ({{ coin?.symbol | uppercase }})</mat-card-title>
+        <mat-card-subtitle class="coin-price">
+          <strong [ngClass]="{'change-up': coin?.change24h > 0, 'change-down': coin?.change24h < 0}">
+            $ {{ coin?.prices[0].price }}
+          </strong><br>
+        </mat-card-subtitle>
+      </div>
+    </mat-card-title-group>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <button mat-button (click)="goDetails(coin?.symbol)">Details</button>
+      <button mat-button (click)="removeFromFavourites(coin?.symbol)" color="warn">Remove</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,32 @@
+mat-card {
+  max-width: 400px;
+  min-width: 360px;
+}
+
+mat-card-title-group {
+  padding: 10px;
+}
+
+mat-card img {
+  cursor: pointer;
+}
+
+.coin-title {
+  font-size: 24px;
+}
+
+.coin-price {
+  font-size: 22px;
+}
+
+.change-up {
+  color: #093
+}
+
+.change-down {
+  color: #D14836;
+}
+
+.wrap-container {
+  flex-wrap: wrap;
+}

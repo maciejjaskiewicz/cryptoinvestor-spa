@@ -1,0 +1,29 @@
+<div class="title">Transaction details</div>
+<div class="dialog-content">
+  <div class="coin-info" layout="row">
+    <div flex="40"><strong>Coin:</strong></div>
+    <div flex="60">{{ coinName }}</div>
+  </div>
+  <form [formGroup]="transactionForm">
+    <mat-form-field class="full-width">
+      <input formControlName="buyPrice" name="buyPrice" matInput placeholder="Buy price">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input formControlName="amount" name="amount" matInput placeholder="Amount">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input formControlName="date" name="date" matInput [matDatepicker]="picker" placeholder="Purchase date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox formControlName="sell" name="sell" (change)="toggleSellState()">Sell</mat-checkbox>
+    <mat-form-field class="full-width">
+      <input formControlName="soldPrice" name="soldPrice" matInput placeholder="Sold price">
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="warn" (click)="delete()" mat-dialog-close>Delete</button>
+    <button [disabled]="transactionForm.invalid" (click)="update()" mat-raised-button color="primary">Update</button>
+  </mat-dialog-actions>
+</div>

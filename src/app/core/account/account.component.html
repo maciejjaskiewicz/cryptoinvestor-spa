@@ -1,0 +1,63 @@
+<mat-toolbar color="primary">
+  <span>User Settings</span>
+</mat-toolbar>
+<div class="card-content">
+  <h5>General</h5>
+  <mat-card>
+    <mat-card-content class="info-list">
+      <div layout="row">
+        <div flex="30">Username:</div>
+        <div flex="70">{{ userProfile.username }}</div>
+      </div>
+      <div layout="row">
+        <div flex="30">Email:</div>
+        <div flex="70">{{ userProfile.email }}</div>
+      </div>
+      <div layout="row">
+        <div flex="30">Created:</div>
+        <div flex="70">{{ userProfile.createdAt | date:'medium' }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <h5>Personal Settings</h5>
+  <mat-card>
+    <mat-card-content>
+      <mat-list>
+        <form #updateForm="ngForm">
+          <mat-list-item layout="row">
+            <div flex="30">First Name:</div>
+            <div flex="70">
+              <mat-form-field>
+                <input matInput name="firstName" placeholder="First Name" [ngModel]="userProfile.firstName" ngModel>
+              </mat-form-field>
+            </div>
+          </mat-list-item>
+          <mat-list-item layout="row">
+            <div flex="30">Last Name:</div>
+            <div flex="70">
+              <mat-form-field>
+                <input matInput name="lastName" placeholder="Last Name" [ngModel]="userProfile.lastName" ngModel>
+              </mat-form-field>
+            </div>
+          </mat-list-item>
+          <mat-list-item layout="row">
+            <div flex="30">Gender:</div>
+            <div flex="70">
+              <mat-form-field>
+                <mat-select name="gender" placeholder="Gender" [ngModel]="userProfile.gender" ngModel>
+                  <mat-option value="male">Male</mat-option>
+                  <mat-option value="female">Female</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-list-item>
+        </form>
+      </mat-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <button (click)="updateForm.reset()" mat-button>Clear</button>
+      <button [disabled]="updateForm.pristine" (click)="update()" mat-raised-button color="primary">SAVE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
